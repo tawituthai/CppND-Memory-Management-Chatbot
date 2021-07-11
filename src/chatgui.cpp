@@ -118,7 +118,8 @@ ChatBotPanelDialog::ChatBotPanelDialog(wxWindow *parent, wxWindowID id)
     ////
 
     // create chat logic instance
-    _chatLogic = new ChatLogic(); 
+    // use unique_prt instead of Raw pointer
+    _chatLogic = std::make_unique<ChatLogic>(); 
 
     // pass pointer to chatbot dialog so answers can be displayed in GUI
     _chatLogic->SetPanelDialogHandle(this);
@@ -134,10 +135,11 @@ ChatBotPanelDialog::~ChatBotPanelDialog()
 {
     //// STUDENT CODE
     ////
-    if (_chatLogic != nullptr) {
-        std::cout << "Delete _chatLogic" << std::endl;
+
+    // Don't need to manually delete it anymore
+    /*
         delete _chatLogic;
-    }
+    */
 
     ////
     //// EOF STUDENT CODE
